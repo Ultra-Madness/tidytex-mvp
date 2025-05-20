@@ -20,5 +20,24 @@ export default function ClientDashboard() {
 }
 
 const styles = StyleSheet.create({
-  // ...styles here
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f0f8ff',
+  },
+  title: {
+    fontSize: 22,
+    marginBottom: 20,
+    fontWeight: 'bold',
+  },
+  button: {
+    backgroundColor: '#0066cc',
+    padding: 15,
+    borderRadius: 8,
+  },
+  buttonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+  },
 });
