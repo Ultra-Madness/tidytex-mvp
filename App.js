@@ -15,14 +15,14 @@ function AppContent() {
   return (
     <Stack.Navigator>
       {!user ? (
-        <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="Login" component={LoginScreen} />
       ) : user.role === 'client' ? (
         <>
-          <Stack.Screen name="ClientDashboard" component={ClientDashboard} options={{ title: 'Client Dashboard' }} />
-          <Stack.Screen name="ClientBookingScreen" component={ClientBookingScreen} options={{ title: 'Book a Cleaning' }} />
+          <Stack.Screen name="ClientDashboard" component={ClientDashboard} />
+          <Stack.Screen name="ClientBookingScreen" component={ClientBookingScreen} />
         </>
       ) : (
-        <Stack.Screen name="CleanerDashboard" component={CleanerDashboard} options={{ title: 'Cleaner Dashboard' }} />
+        <Stack.Screen name="CleanerDashboard" component={CleanerDashboard} />
       )}
     </Stack.Navigator>
   );
@@ -30,10 +30,10 @@ function AppContent() {
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <AuthProvider>
+    <AuthProvider>
+      <NavigationContainer>
         <AppContent />
-      </AuthProvider>
-    </NavigationContainer>
+      </NavigationContainer>
+    </AuthProvider>
   );
 }

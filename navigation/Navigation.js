@@ -1,31 +1,19 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
 import ClientDashboard from '../screens/ClientDashboard';
 import CleanerDashboard from '../screens/CleanerDashboard';
-import LoginScreen from '../screens/LoginScreen';
 import ClientBookingScreen from '../screens/ClientBookingScreen';
+import LoginScreen from '../screens/LoginScreen';
 
 const Stack = createNativeStackNavigator();
 
-export default function AppNavigator({ user }) {
+export default function Navigation() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: true }}>
-        {!user ? (
-          <Stack.Screen name="Login" component={LoginScreen} />
-        ) : user.role === 'client' ? (
-          <>
-            <Stack.Screen name="ClientDashboard" component={ClientDashboard} />
-            <Stack.Screen name="BookCleaning" component={ClientBookingScreen} />
-          </>
-        ) : (
-          <>
-            <Stack.Screen name="CleanerDashboard" component={CleanerDashboard} />
-          </>
-        )}
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Stack.Navigator initialRouteName="Login">
+      <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen name="ClientDashboard" component={ClientDashboard} />
+      <Stack.Screen name="CleanerDashboard" component={CleanerDashboard} />
+      <Stack.Screen name="ClientBooking" component={ClientBookingScreen} />
+    </Stack.Navigator>
   );
 }
