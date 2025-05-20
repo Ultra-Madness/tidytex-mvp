@@ -1,37 +1,58 @@
-// screens/LoginScreen.js
 import React, { useContext } from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { AuthContext } from '../context/authContext';
+import { useNavigation } from '@react-navigation/native';
 
-const LoginScreen = () => {
+export default function LoginScreen() {
   const { login } = useContext(AuthContext);
+  const navigation = useNavigation();
+
+  const handleLogin = (role) => {
+    login(role);
+    if (role === 'client') {
+      navigation.navigate('ClientDashboard');
+    } else if (role === 'cleaner') {
+      navigation.navigate('CleanerDashboard');
+    }
+  };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Welcome to TidyTex</Text>
-      <Button title="Login as Client" onPress={() => login('client')} />
-      <View style={styles.spacer} />
-      <Button title="Login as Cleaner" onPress={() => login('cleaner')} />
+      <Text style={styles.title}>Welcome to TidyTex 👋</Text>
+
+      <TouchableOpacity style={styles.button} onPress={() => handleLogin('client')}>
+        <Text style={styles.buttonText}>Login as Client</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.button} onPress={() => handleLogin('cleaner')}>
+        <Text style={styles.buttonText}>Login as Cleaner</Text>
+      </TouchableOpacity>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#fff',
     justifyContent: 'center',
-    paddingHorizontal: 20,
-    backgroundColor: '#ffffff', // Light background so buttons and text are visible
+    alignItems: 'center',
   },
   title: {
     fontSize: 24,
+    fontWeight: 'bold',
     marginBottom: 40,
     textAlign: 'center',
-    color: '#333', // Darker text for contrast
+    color: '#333',
   },
-  spacer: {
-    height: 20,
+  button: {
+    backgroundColor: '#0066cc',
+    padding: 16,
+    marginVertical: 10,
+    borderRadius: 8,
+  },
+  buttonText: {
+    color: '#fff',
+    fontWeight: 'bold',
   },
 });
-
-export default LoginScreen;
