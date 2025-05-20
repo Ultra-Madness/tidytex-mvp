@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Button, StyleSheet, TouchableOpacity } from 'react-native';
 
-export default function ClientBookingScreen() {
+const ClientBookingScreen = () => {
   const [selectedType, setSelectedType] = useState(null);
 
   const handleBooking = () => {
@@ -44,7 +44,7 @@ export default function ClientBookingScreen() {
       <Button title="Confirm Booking" onPress={handleBooking} />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -77,3 +77,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#cceeff',
   },
 });
+
+export default ClientBookingScreen;
